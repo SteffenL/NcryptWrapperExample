@@ -19,6 +19,7 @@ public:
     KeyStorageProvider(NativeHandle nativeHandle);
     virtual ~KeyStorageProvider();
     PersistedKey CreateKey(const std::wstring& algorithm, const std::wstring& keyName);
+    PersistedKey CreateKey(const std::wstring& algorithm);
     PersistedKey OpenKey(const std::wstring& keyName);
     void DeleteKey(PersistedKey& key);
     std::vector<uint8_t> ExportKey(const PersistedKey& key, const std::wstring& blobType);

@@ -23,17 +23,31 @@ KeyStorageProvider::~KeyStorageProvider()
 
 PersistedKey KeyStorageProvider::CreateKey(const std::wstring& algorithm, const std::wstring& keyName)
 {
+    if (algorithm.empty()) {
+        throw std::logic_error("Algorithm cannot be empty");
+    }
+
     auto providerHandle = GetNativeHandle<NCRYPT_PROV_HANDLE>();
     NCRYPT_KEY_HANDLE keyHandle;
-    if (NCryptCreatePersistedKey(providerHandle, &keyHandle, algorithm.c_str(), keyName.c_str(), 0, 0) != ERROR_SUCCESS) {
+    auto keyName_c = !keyName.empty() ? keyName.c_str() : NULL;
+    if (NCryptCreatePersistedKey(providerHandle, &keyHandle, algorithm.c_str(), keyName_c, 0, 0) != ERROR_SUCCESS) {
         throw std::runtime_error("Failed to create persisted key");
     }
 
     return PersistedKey{ reinterpret_cast<PersistedKey::NativeHandle>(keyHandle) };
 }
 
+PersistedKey KeyStorageProvider::CreateKey(const std::wstring& algorithm)
+{
+    return CreateKey(algorithm, L"");
+}
+
 PersistedKey KeyStorageProvider::OpenKey(const std::wstring& keyName)
 {
+    if (keyName.empty()) {
+        throw std::logic_error("Key name cannot be empty");
+    }
+
     auto providerHandle = GetNativeHandle<NCRYPT_PROV_HANDLE>();
     NCRYPT_KEY_HANDLE keyHandle;
     if (NCryptOpenKey(providerHandle, &keyHandle, keyName.c_str(), 0, 0) != ERROR_SUCCESS) {
@@ -55,6 +69,10 @@ void KeyStorageProvider::DeleteKey(PersistedKey& key)
 
 std::vector<uint8_t> KeyStorageProvider::ExportKey(const PersistedKey& key, const std::wstring& blobType)
 {
+    if (blobType.empty()) {
+        throw std::logic_error("Blob type cannot be empty");
+    }
+
     std::vector<uint8_t> keyBlob;
     DWORD keySize = 0;
     auto keyHandle = key.GetNativeHandle<NCRYPT_KEY_HANDLE>();
