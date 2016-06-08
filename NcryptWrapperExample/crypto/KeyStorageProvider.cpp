@@ -88,7 +88,7 @@ std::vector<uint8_t> KeyStorageProvider::ExportKey(const PersistedKey& key, cons
 
     keyBlob.resize(keySize);
     if (NCryptExportKey(keyHandle, NULL, blobType, NULL, &keyBlob[0], keySize, &keySize, 0) != ERROR_SUCCESS) {
-        throw std::runtime_error("Failed to determine size of key to export");
+        throw std::runtime_error("Failed to export key");
     }
 
     return keyBlob;
