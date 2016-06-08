@@ -94,7 +94,7 @@ std::vector<uint8_t> KeyStorageProvider::ExportKey(const PersistedKey& key, cons
     return keyBlob;
 }
 
-KeyStorageProvider KeyStorageProvider::OpenDefault()
+KeyStorageProvider KeyStorageProvider::OpenDefaultProvider()
 {
     NCRYPT_PROV_HANDLE nativeHandle;
     if (NCryptOpenStorageProvider(&nativeHandle, NULL, 0) != ERROR_SUCCESS) {

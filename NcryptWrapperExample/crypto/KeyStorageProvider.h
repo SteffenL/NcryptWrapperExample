@@ -24,7 +24,7 @@ public:
     PersistedKey OpenKey(const std::string& keyName);
     void DeleteKey(PersistedKey& key);
     std::vector<uint8_t> ExportKey(const PersistedKey& key, const wchar_t* blobType);
-    static KeyStorageProvider OpenDefault();
+    static KeyStorageProvider OpenDefaultProvider();
     void SetNativeHandle(NativeHandle handle);
 
     template<typename T = NativeHandle>

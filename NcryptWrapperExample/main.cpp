@@ -10,7 +10,7 @@
 
 int main()
 {
-    auto provider = KeyStorageProvider::OpenDefault();
+    auto provider = KeyStorageProvider::OpenDefaultProvider();
 
     // No key name (don't persist key)
     {
