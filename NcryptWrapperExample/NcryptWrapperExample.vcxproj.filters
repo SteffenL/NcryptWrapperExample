@@ -24,12 +24,21 @@
     <ClCompile Include="crypto\KeyStorageProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="common\unicode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crypto\KeyStorageProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="crypto\PersistedKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unicode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\noncopyable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

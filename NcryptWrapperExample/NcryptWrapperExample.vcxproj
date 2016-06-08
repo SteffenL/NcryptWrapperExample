@@ -146,11 +146,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="common\unicode.cpp" />
     <ClCompile Include="crypto\KeyStorageProvider.cpp" />
     <ClCompile Include="crypto\PersistedKey.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\noncopyable.h" />
+    <ClInclude Include="common\unicode.h" />
     <ClInclude Include="crypto\KeyStorageProvider.h" />
     <ClInclude Include="crypto\PersistedKey.h" />
   </ItemGroup>
